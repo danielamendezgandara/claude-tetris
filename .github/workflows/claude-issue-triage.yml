@@ -65,14 +65,47 @@ jobs:
 
             ## Formato del comentario
 
+            El cuerpo del comentario DEBE estar en Markdown compatible con GitHub (GFM), para que se renderice correctamente en el issue:
+            - Usa saltos de línea reales (no secuencias literales `\n`) y una línea en blanco entre secciones y antes de listas, tablas y bloques de código.
+            - Encabezados con `##` / `###`, listas con `-` o `1.`, énfasis con `**negrita**`, código en línea con comillas invertidas.
+            - Bloques de código con triple comilla invertida e indicando el lenguaje (```js, ```diff, ```html, ```css).
+            - Referencias a código como `` `game.js:123` `` (en línea, entre comillas invertidas). No uses HTML salvo el marcador oculto inicial.
+            - Para pasos verificables, usa listas de tareas GFM (`- [ ] paso`).
+            - Para clasificación, puedes usar una tabla GFM con cabecera y separador `| --- | --- |`.
+            - Escapa correctamente el contenido al pasarlo a `gh api -f body=...` para que no se rompa el Markdown (comillas, saltos de línea, comillas invertidas).
+
+            Plantilla (respeta el orden y los encabezados):
+
+            <!-- claude-triage -->
             ## 🤖 Diagnóstico automático
-            - **Resumen**: el problema en 1–2 líneas.
-            - **Clasificación**: labels asignados y por qué.
-            - **Archivos y funciones involucradas**: con referencias `archivo:línea` (p. ej. `collide`, `tryRotate`, `clearLines`).
-            - **Causa probable**: análisis técnico.
-            - **Propuesta de solución**: pasos concretos para implementarla.
-            - **Cómo verificar**: cómo comprobar que quedó resuelto.
-            - **Información faltante**: preguntas para quien reportó, si algo es ambiguo (omite si no aplica).
+
+            ### 📝 Resumen
+            El problema en 1–2 líneas.
+
+            ### 🏷️ Clasificación
+            | Tipo | Área | Prioridad |
+            | --- | --- | --- |
+            | `bug` | `area:gameplay` | `priority:medium` |
+
+            Por qué se asignaron esos labels.
+
+            ### 📂 Archivos y funciones involucradas
+            - `game.js:123` — `collide`: qué hace en este caso.
+            - `game.js:200` — `tryRotate`: qué hace en este caso.
+
+            ### 🔍 Causa probable
+            Análisis técnico. Usa un bloque de código con lenguaje si citas código.
+
+            ### 🛠️ Propuesta de solución
+            1. Paso concreto.
+            2. Paso concreto.
+
+            ### ✅ Cómo verificar
+            - [ ] Paso de verificación 1.
+            - [ ] Paso de verificación 2.
+
+            ### ❓ Información faltante
+            - Pregunta para quien reportó, si algo es ambiguo (omite esta sección si no aplica).
 
             ## Reglas
             - No modifiques código, no crees ramas ni PRs. Solo labels y el comentario de diagnóstico.
